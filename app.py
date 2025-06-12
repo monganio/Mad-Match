@@ -42,8 +42,9 @@ def load_search_systems():
         return None
 
 @st.cache_data(ttl=300) # Cache for 5 minutes
-def load_corrections_from_gsheet(client, sheet_name):
+def load_corrections_from_gsheet(sheet_name):  # <--- เอา client ออก
     """Loads the user's corrections from the specified Google Sheet."""
+    client = get_gsheet_client() # <--- เรียกใช้ฟังก์ชันเพื่อดึง client ที่แคชไว้
     if not client or not sheet_name: return pd.DataFrame()
     try:
         sheet = client.open(sheet_name).sheet1
@@ -99,7 +100,7 @@ client = get_gsheet_client()
 systems = load_search_systems()
 
 if systems and client:
-    corrections_db = load_corrections_from_gsheet(client, SHEET_NAME)
+    corrections_db = load_corrections_from_gsheet(SHEET_NAME)
 
     if 'boq_df' not in st.session_state:
         st.session_state.boq_df = None
