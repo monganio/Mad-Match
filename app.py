@@ -15,7 +15,7 @@ st.set_page_config(page_title="BOQ AI Assistant", layout="wide")
 @st.cache_resource
 def get_gsheet_client():
     """Authenticates with Google Sheets using Streamlit Secrets."""
-    scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+    scopes = ["https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive"]
     try:
         creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=scopes)
         client = gspread.authorize(creds)
