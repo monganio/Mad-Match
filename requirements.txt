@@ -6,3 +6,4 @@ torch
 numpy
 faiss-cpu
 streamlit-searchbox
+gspread
