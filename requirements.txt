@@ -7,3 +7,4 @@ numpy
 faiss-cpu
 streamlit-searchbox
 gspread
+firebase-admin
